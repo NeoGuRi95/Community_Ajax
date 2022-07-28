@@ -1,5 +1,6 @@
 package com.ll.exam.article;
 
+import com.ll.exam.ResultData;
 import com.ll.exam.Rq;
 import com.ll.exam.article.dto.ArticleDto;
 import com.ll.exam.util.Ut;
@@ -128,14 +129,12 @@ public class ArticleController {
     }
 
     public void showJson(Rq rq) {
-        Map<String, Object> resultMap = new LinkedHashMap<>();
+        Map<String, Object> resultMap;
 
         List<ArticleDto> articleDtos = articleService.findAll();
 
-        resultMap.put("resultCode", "S-1");
-        resultMap.put("msg", "성공");
-        resultMap.put("data", articleDtos);
+        ResultData<List<ArticleDto>> resultData = new ResultData("성공", "S-1", articleDtos);
 
-        rq.json(resultMap);
+        rq.json(resultData);
     }
 }
