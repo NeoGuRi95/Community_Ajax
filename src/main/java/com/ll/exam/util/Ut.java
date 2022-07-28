@@ -23,6 +23,7 @@ public class Ut {
             }
         }
 
+        // 단순한 객체
         public static <T> T toObj(String jsonStr, Class<T> cls, T defaultValue) {
             try {
                 return om.readValue(jsonStr, cls);
@@ -31,15 +32,8 @@ public class Ut {
             }
         }
 
-        public static <T> List<T> toObj(String jsonStr, TypeReference<List<T>> typeReference, List<T> defaultValue) {
-            try {
-                return om.readValue(jsonStr, typeReference);
-            } catch (JsonProcessingException e) {
-                return defaultValue;
-            }
-        }
-
-        public static <K, V> Map<K, V> toObj(String jsonStr, TypeReference<Map<K, V>> typeReference, Map<K, V> defaultValue) {
+        // 복잡한 객체
+        public static <T> T toObj(String jsonStr, TypeReference<T> typeReference, T defaultValue) {
             try {
                 return om.readValue(jsonStr, typeReference);
             } catch (JsonProcessingException e) {
