@@ -3,6 +3,11 @@ import com.ll.exam.article.dto.ArticleDto;
 import com.ll.exam.util.Ut;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class AppTest {
@@ -31,5 +36,33 @@ public class AppTest {
         ArticleDto articleDtoFromJson = Ut.json.toObj(jsonStr, ArticleDto.class, null);
 
         assertThat(articleDtoOrigin).isEqualTo(articleDtoFromJson);
+    }
+
+    @Test
+    void ObjectMapper__listToJson() {
+        List<ArticleDto> list = new ArrayList<>();
+        list.add(new ArticleDto(1, "title1", "body1"));
+        list.add(new ArticleDto(2, "title2", "body2"));
+
+        String jsonStr = Ut.json.toStr(list, "");
+
+        assertThat(jsonStr).isNotBlank();
+        assertThat(jsonStr).isEqualTo("""
+                [{"id":1,"title":"title1","body":"body1"},{"id":2,"title":"title2","body":"body2"}]
+                """.trim());
+    }
+
+    @Test
+    void ObjectMapper__mapToJson() {
+        Map<String, Object> d = new HashMap<String, Object>();
+        d.put("recent", new ArticleDto(1, "title1", "body1"));
+        d.put("old", new ArticleDto(2, "title2", "body2"));
+
+        String jsonStr = Ut.json.toStr(d, "");
+
+        assertThat(jsonStr).isNotBlank();
+        assertThat(jsonStr).isEqualTo("""
+                {"old":{"id":2,"title":"title2","body":"body2"},"recent":{"id":1,"title":"title1","body":"body1"}}
+                """.trim());
     }
 } 
