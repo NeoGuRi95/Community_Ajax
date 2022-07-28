@@ -1,4 +1,4 @@
-import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.ll.exam.article.dto.ArticleDto;
 import com.ll.exam.util.Ut;
 import org.junit.jupiter.api.Test;
@@ -18,7 +18,7 @@ public class AppTest {
     }
 
     @Test
-    void ObjectMapper__ObjectMapper() throws JsonProcessingException {
+    void ObjectMapper__ObjectMapper() {
         ArticleDto articleDto = new ArticleDto(1, "제목", "내용");
 
         String jsonStr = Ut.json.toStr(articleDto, "");
@@ -64,5 +64,19 @@ public class AppTest {
         assertThat(jsonStr).isEqualTo("""
                 {"old":{"id":2,"title":"title2","body":"body2"},"recent":{"id":1,"title":"title1","body":"body1"}}
                 """.trim());
+    }
+
+    @Test
+    void ObjectMapper__jsonStrToArticleDtoList() {
+        List<ArticleDto> articleDtos = new ArrayList<>();
+        articleDtos.add(new ArticleDto(1, "제목1", "내용1"));
+        articleDtos.add(new ArticleDto(2, "제목2", "내용2"));
+
+        String jsonStr = Ut.json.toStr(articleDtos, "");
+
+        List<ArticleDto> articleDtosFromJson = Ut.json.toObj(jsonStr, new TypeReference<>() {
+        }, null);
+
+        assertThat(articleDtosFromJson).isEqualTo(articleDtos);
     }
 } 
