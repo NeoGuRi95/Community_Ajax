@@ -4,7 +4,7 @@ import com.ll.exam.Rq;
 import com.ll.exam.article.dto.ArticleDto;
 import com.ll.exam.util.Ut;
 
-import java.util.List;
+import java.util.*;
 
 public class ArticleController {
     private ArticleService articleService;
@@ -128,11 +128,14 @@ public class ArticleController {
     }
 
     public void showJson(Rq rq) {
+        Map<String, Object> resultMap = new LinkedHashMap<>();
+
         List<ArticleDto> articleDtos = articleService.findAll();
 
-        for (ArticleDto articleDto : articleDtos) {
-            String jsonStr = Ut.json.toStr(articleDto, "");
-            rq.println(jsonStr);
-        }
+        resultMap.put("resultCode", "S-1");
+        resultMap.put("msg", "성공");
+        resultMap.put("data", articleDtos);
+
+        rq.json(resultMap);
     }
 }
