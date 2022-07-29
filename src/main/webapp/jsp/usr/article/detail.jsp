@@ -11,6 +11,7 @@ function Article__loadChatting(Article__Id) {
             console.log(responseData);
             const article = responseData.data[0];
             const chattingList = article.chattingList;
+
             for (const index in chattingList) {
                 const chat = chattingList[index];
                 const html = `
