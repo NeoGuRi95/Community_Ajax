@@ -80,6 +80,7 @@ public class Rq {
         req.setAttribute(name, value);
     }
 
+    // jsp 파일 내보내기
     public void view(String path) {
         // gugudan2.jsp 에게 나머지 작업을 토스
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("/jsp/" + path + ".jsp");
@@ -136,6 +137,7 @@ public class Rq {
         }
     }
 
+    // 브라우저에 메세지 알람 후 지정된 경로로 이동시키기
     public void replace(String uri, String msg) {
         if (msg != null && msg.trim().length() > 0) {
             println("""
@@ -152,6 +154,7 @@ public class Rq {
                 """.formatted(uri));
     }
 
+    // 브라우저에 메세지 알람 후 뒤로가기
     public void historyBack(String msg) {
         if (msg != null && msg.trim().length() > 0) {
             println("""
@@ -168,6 +171,7 @@ public class Rq {
                 """);
     }
 
+    // 객체의 원본을 그대로 json 형식으로 내보내기
     public void json(Object resultData) {
         resp.setContentType("application/json; charset=utf-8");
 
@@ -175,14 +179,17 @@ public class Rq {
         println(jsonStr);
     }
 
+    // 객체 + 응답코드 + 메세지를 묶어서 json 형식으로 내보내기
     public void json(Object data, String resultCode, String msg) {
         json(new ResultData(resultCode, msg, data));
     }
 
+    // 성공 응답
     public void successJson(Object data) {
         json(data, "S-1", "성공");
     }
 
+    // 실패 응답
     public void failJson(Object data) {
         json(data, "F-1", "실패");
     }
