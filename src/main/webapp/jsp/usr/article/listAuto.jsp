@@ -36,7 +36,7 @@ function Articles__loadMore() {
 
 <section>
     <div class="container px-3 mx-auto">
-        <h1 class="font-bold text-lg">채팅!</h1>
+        <h1 class="font-bold text-lg">리스트(오토)</h1>
 
         <ul class="articles mt-5">
             <!-- 이 부분에 자바스크립트를 통해서 HTML을 채우겠습니다. -->

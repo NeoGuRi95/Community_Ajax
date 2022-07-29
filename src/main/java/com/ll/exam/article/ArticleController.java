@@ -134,16 +134,30 @@ public class ArticleController {
 
     public void showJson(Rq rq) {
         long fromId = rq.getLongParam("fromId", -1);
+        long toId = rq.getLongParam("toId", -1);
 
-        List<ArticleDto> articleDtos = null;
+        List<ArticleDto> articleDtos = new ArrayList<>();
 
         if ( fromId == -1 ) {
             articleDtos = articleService.findAll();
         }
-        else {
+        else if (toId == -1) {
             articleDtos = articleService.findIdGreaterThan(fromId);
+        } else {
+            articleDtos.add(articleService.findById(fromId));
         }
 
         rq.successJson(articleDtos);
+    }
+
+    public void writeChatting(Rq rq) {
+        long id = rq.getLongPathValueByIndex(1, 0);
+        String chat = rq.getParam("chat", "");
+
+        if (chat.equals("")) {
+            return;
+        } else {
+            articleService.writeChatting(id, chat);
+        }
     }
 }

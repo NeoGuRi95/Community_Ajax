@@ -50,6 +50,9 @@ public class DispatchServlet extends HttpServlet {
                     case "/usr/article/modify":
                         articleController.doModify(rq);
                         break;
+                    case "/usr/article/detail":
+                        articleController.writeChatting(rq);
+                        break;
                 }
                 break;
             case "DELETE":
