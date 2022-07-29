@@ -22,27 +22,13 @@ public class ArticleRepository {
         IntStream.rangeClosed(1, 10).forEach(id -> {
             String title = "제목%d".formatted(id);
             String body = "내용%d".formatted(id);
-            String chat = "채팅";
-            write(title, body, chat);
+            write(title, body);
         });
     }
 
     public static long write(String title, String body) {
         long id = ++lastId;
         ArticleDto newArticleDto = new ArticleDto(id, title, body, new ArrayList<>());
-
-        datum.add(newArticleDto);
-
-        return id;
-    }
-
-    public static long write(String title, String body, String chat) {
-        long id = ++lastId;
-        ArrayList<String> chatList = new ArrayList<>();
-
-        chatList.add(chat);
-
-        ArticleDto newArticleDto = new ArticleDto(id, title, body, chatList);
 
         datum.add(newArticleDto);
 

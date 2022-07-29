@@ -11,14 +11,9 @@ function Article__loadChatting(Article__Id) {
             console.log(responseData);
             const article = responseData.data[0];
             const chattingList = article.chattingList;
+            const html = chattingList.join('<br>');
 
-            for (const index in chattingList) {
-                const chat = chattingList[index];
-                const html = `
-                    \${chat}
-                `;
-                $('.chattings').append(html);
-            }
+            $('.chattings').replaceWith(html);
             setTimeout(Article__loadChatting, 3000, Article__Id);
         });
 }

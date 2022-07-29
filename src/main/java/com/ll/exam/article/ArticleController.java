@@ -159,5 +159,7 @@ public class ArticleController {
         } else {
             articleService.writeChatting(id, chat);
         }
+
+        rq.replace("/usr/article/detail/free/%d".formatted(id), null);
     }
 }
