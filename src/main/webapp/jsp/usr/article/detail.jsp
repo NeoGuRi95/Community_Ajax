@@ -54,7 +54,7 @@ function chatting__submitForm(form) {
         <h1 class="font-bold text-lg mt-2">채팅창</h1>
 
         <div class="chattings mt-2">
-            <!-- 이 부분에 자바스크립트를 통해서 HTML을 채우겠습니다. -->
+            <!-- 이 부분에 자바스크립트를 통해서 HTML을 채우겠습니다! -->
         </div>
 
         <form method="POST" onsubmit="chatting__submitForm(this); return false;" class="mt-2">
