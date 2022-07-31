@@ -49,17 +49,15 @@ function chatting__submitForm(form) {
     </div>
 </section>
 <br>
-<section>
-    <div class="container px-3 mx-auto">
-        <h1 class="font-bold text-lg">채팅창</h1>
+<section class="h-screen">
+    <div class="container px-3 mx-auto h-3/5 border-2 bg-stone-400 text-black">
+        <h1 class="font-bold text-lg mt-2">채팅창</h1>
 
-        <div class="chattings mt-5">
+        <div class="chattings mt-2">
             <!-- 이 부분에 자바스크립트를 통해서 HTML을 채우겠습니다. -->
         </div>
 
-        <hr class="mt-3 mb-3">
-
-        <form method="POST" onsubmit="chatting__submitForm(this); return false;">
+        <form method="POST" onsubmit="chatting__submitForm(this); return false;" class="mt-2">
             <div class="flex gap-3">
                 <div>
                     <input name="chat" type="text" maxlength="300" placeholder="채팅을 입력해주세요." />
