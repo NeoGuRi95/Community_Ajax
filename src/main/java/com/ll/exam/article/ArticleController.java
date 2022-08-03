@@ -1,9 +1,7 @@
 package com.ll.exam.article;
 
-import com.ll.exam.ResultData;
 import com.ll.exam.Rq;
 import com.ll.exam.article.dto.ArticleDto;
-import com.ll.exam.util.Ut;
 
 import java.util.*;
 
@@ -150,14 +148,14 @@ public class ArticleController {
         rq.successJson(articleDtos);
     }
 
-    public void writeChatting(Rq rq) {
+    public void writeReply(Rq rq) {
         long id = rq.getLongPathValueByIndex(1, 0);
-        String chat = rq.getParam("chat", "");
+        String reply = rq.getParam("reply", "");
 
-        if (chat.equals("")) {
+        if (reply.equals("")) {
             return;
         } else {
-            articleService.writeChatting(id, chat);
+            articleService.writeReply(id, reply);
         }
 
         rq.replace("/usr/article/detail/free/%d".formatted(id), null);

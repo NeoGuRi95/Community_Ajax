@@ -51,7 +51,7 @@ public class DispatchServlet extends HttpServlet {
                         articleController.doModify(rq);
                         break;
                     case "/usr/article/detail":
-                        articleController.writeChatting(rq);
+                        articleController.writeReply(rq);
                         break;
                 }
                 break;

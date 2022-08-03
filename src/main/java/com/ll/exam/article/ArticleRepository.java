@@ -73,11 +73,11 @@ public class ArticleRepository {
                 .collect(Collectors.toList());
     }
 
-    public void writeChat(long id, String chat) {
+    public void writeReply(long id, String reply) {
         ArticleDto articleDto = findById(id);
 
         if (articleDto == null) return;
 
-        articleDto.getChattingList().add(chat);
+        articleDto.getReplyList().add(reply);
     }
 }

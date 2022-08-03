@@ -35,7 +35,7 @@ public class ArticleService {
         return articleRepository.findAllIdGreaterThan(fromId);
     }
 
-    public void writeChatting(long id, String chat) {
-        articleRepository.writeChat(id, chat);
+    public void writeReply(long id, String reply) {
+        articleRepository.writeReply(id, reply);
     }
 }
