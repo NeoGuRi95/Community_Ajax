@@ -15,11 +15,11 @@
 <!-- 폰트어썸 불러오기 -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" />
 
-<!-- 테일윈드 불러오기 -->
-<script src="https://cdn.tailwindcss.com"></script>
-
 <!-- 데이지UI 불러오기 -->
 <link href="https://cdn.jsdelivr.net/npm/daisyui@2.20.0/dist/full.css" rel="stylesheet" type="text/css" />
+
+<!-- 테일윈드 불러오기 -->
+<script src="https://cdn.tailwindcss.com"></script>
 
 <!-- 공통 CSS -->
 <style>
@@ -43,6 +43,12 @@ html > body {
         <a href="/usr/article/list/free" class="mr-auto">로고</a>
 
         <ul class="flex gap-3">
+            <li>
+                <a class="hover:underline hover:text-[red]" href="/usr/chat/createRoom">채팅방 생성</a>
+            </li>
+            <li>
+                <a class="hover:underline hover:text-[red]" href="/usr/chat/roomList">채팅방</a>
+            </li>
             <li>
                 <a class="hover:underline hover:text-[red]" href="/usr/article/write/free">자유게시물 작성</a>
             </li>
