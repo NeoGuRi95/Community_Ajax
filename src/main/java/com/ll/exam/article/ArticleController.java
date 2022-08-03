@@ -2,6 +2,7 @@ package com.ll.exam.article;
 
 import com.ll.exam.Rq;
 import com.ll.exam.article.dto.ArticleDto;
+import com.ll.exam.article.dto.ArticleReplyDto;
 
 import java.util.*;
 
@@ -131,15 +132,16 @@ public class ArticleController {
     }
 
     public void getReplysJson(Rq rq) {
-        long id = rq.getLongParam("id", -1);
+        long roomId = rq.getLongParam("roomId", -1);
+        long replyFromId = rq.getLongParam("replyFromId", -1);
 
-        if ( id == -1 ) {
+        if ( roomId == -1 || replyFromId == -1) {
             return;
         }
 
-        ArticleDto articleDto = articleService.findById(id);
+        List<ArticleReplyDto> articleReplyDtos = articleService.findReplyList(roomId, replyFromId);
 
-        rq.successJson(articleDto);
+        rq.successJson(articleReplyDtos);
     }
 
     public void writeReply(Rq rq) {

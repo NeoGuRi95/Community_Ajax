@@ -3,14 +3,28 @@
 <%@ include file="../common/head.jspf"%>
 
 <script>
+let Reply__lastId = 0;
+
 function Article__loadReply(Article__Id) {
-    fetch(`/usr/article/getReplys/free?id=\${Article__Id}`)
+    fetch(`/usr/article/getReplys/free?roomId=\${Article__Id}&replyFromId=\${Reply__lastId}`)
         .then(data => data.json())
         .then(responseData => {
-            const replyList = responseData.data.replyList;
-            const html = replyList.join('<br>');
+            console.log(responseData);
+            const messages = responseData.data;
+            for ( const index in messages ) {
+                const message = messages[index];
+                const html = `
+                    <li class="flex">
+                        <span class="message-list__message-body">\${message.body}</span>
+                    </li>
+                `;
+                $('.replys').append(html);
+            }
 
-            $('.replys').replaceWith(html);
+            if ( messages.length > 0 ) {
+                Reply__lastId = messages[messages.length - 1].id;
+            }
+
             setTimeout(Article__loadReply, 3000, Article__Id);
         });
 }
@@ -47,14 +61,14 @@ function reply__submitForm(form) {
 </section>
 <br>
 <section class="h-screen">
-    <div class="container px-3 mx-auto h-3/5 border-2 mt-2">
+    <div class="container px-3 mx-auto h-3/5 border-2">
         <h1 class="font-bold text-lg mt-2">댓글</h1>
 
-        <div class="replys">
+        <ul class="replys">
             <!-- 이 부분에 자바스크립트를 통해서 HTML을 채우겠습니다! -->
-        </div>
+        </ul>
 
-        <form method="POST" onsubmit="reply__submitForm(this); return false;">
+        <form method="POST" onsubmit="reply__submitForm(this); return false;" action="/usr/article/writeReply/free/${article.id}">
             <input autofocus name="reply" type="text" placeholder="댓글을 입력해주세요." class="input input-bordered" />
             <input type="submit" value="작성" class="btn btn-outline btn-primary"/>
         </form>

@@ -98,6 +98,7 @@ function ChatMessages__modify(form) {
 }
 
 let ChatMessages__lastId = 0;
+
 function ChatMessages__loadMore() {
     fetch(`/usr/chat/getMessages/${room.id}/?fromId=\${ChatMessages__lastId}`)
         .then(data => data.json())
