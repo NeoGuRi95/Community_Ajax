@@ -36,7 +36,7 @@ html > body {
 </style>
 </head>
 
-<body>
+<body class="w-1/2 mx-auto mt-5">
 
 <header>
     <div class="container py-3 px-3 mx-auto flex">

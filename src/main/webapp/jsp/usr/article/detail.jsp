@@ -57,17 +57,8 @@ function reply__submitForm(form) {
         </div>
 
         <form method="POST" onsubmit="reply__submitForm(this); return false;">
-            <div class="flex gap-3">
-                <div>
-                    <input name="reply" type="text" maxlength="300" placeholder="댓글을 입력해주세요." />
-                </div>
-            </div>
-
-            <div>
-                <div>
-                    <input class="hover:underline hover:text-[red] cursor-pointer" type="submit" value="작성" />
-                </div>
-            </div>
+            <input autofocus name="reply" type="text" placeholder="댓글을 입력해주세요." class="input input-bordered" />
+            <input type="submit" value="작성" class="btn btn-outline btn-primary"/>
         </form>
     </div>
 </section>
