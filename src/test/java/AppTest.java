@@ -21,7 +21,7 @@ public class AppTest {
     @Test
     @DisplayName("ArticleDto -> json")
     void ObjectMapper__ObjectMapper() {
-        ArticleDto articleDto = new ArticleDto(1, "제목", "내용");
+        ArticleDto articleDto = new ArticleDto(1, "제목", "내용", new ArrayList<>());
 
         String jsonStr = Ut.json.toStr(articleDto, "");
         assertThat(jsonStr).isNotBlank();
@@ -33,7 +33,7 @@ public class AppTest {
     @Test
     @DisplayName("json -> ArticleDto")
     void ObjectMapper__jsonStrToObj() {
-        ArticleDto articleDtoOrigin = new ArticleDto(1, "제목", "내용");
+        ArticleDto articleDtoOrigin = new ArticleDto(1, "제목", "내용", new ArrayList<>());
         String jsonStr = Ut.json.toStr(articleDtoOrigin, "");
 
         ArticleDto articleDtoFromJson = Ut.json.toObj(jsonStr, ArticleDto.class, null);
@@ -45,8 +45,8 @@ public class AppTest {
     @DisplayName("List -> json")
     void ObjectMapper__listToJson() {
         List<ArticleDto> list = new ArrayList<>();
-        list.add(new ArticleDto(1, "title1", "body1"));
-        list.add(new ArticleDto(2, "title2", "body2"));
+        list.add(new ArticleDto(1, "title1", "body1", new ArrayList<>()));
+        list.add(new ArticleDto(2, "title2", "body2", new ArrayList<>()));
 
         String jsonStr = Ut.json.toStr(list, "");
 
@@ -60,8 +60,8 @@ public class AppTest {
     @DisplayName("Map -> json")
     void ObjectMapper__mapToJson() {
         Map<String, Object> d = new HashMap<String, Object>();
-        d.put("recent", new ArticleDto(1, "title1", "body1"));
-        d.put("old", new ArticleDto(2, "title2", "body2"));
+        d.put("recent", new ArticleDto(1, "title1", "body1", new ArrayList<>()));
+        d.put("old", new ArticleDto(2, "title2", "body2", new ArrayList<>()));
 
         String jsonStr = Ut.json.toStr(d, "");
 
@@ -75,8 +75,8 @@ public class AppTest {
     @DisplayName("json -> List<ArticleDto>")
     void ObjectMapper__jsonStrToArticleDtoList() {
         List<ArticleDto> articleDtos = new ArrayList<>();
-        articleDtos.add(new ArticleDto(1, "제목1", "내용1"));
-        articleDtos.add(new ArticleDto(2, "제목2", "내용2"));
+        articleDtos.add(new ArticleDto(1, "제목1", "내용1", new ArrayList<>()));
+        articleDtos.add(new ArticleDto(2, "제목2", "내용2", new ArrayList<>()));
 
         String jsonStr = Ut.json.toStr(articleDtos, "");
 
@@ -91,8 +91,8 @@ public class AppTest {
     @DisplayName("json -> Map<String, ArticleDto>x")
     void ObjectMapper__jsonStrToArticleDtoMap() {
         Map<String, ArticleDto> articleDtoMap = new HashMap<>();
-        articleDtoMap.put("가장오래된", new ArticleDto(1, "제목1", "내용1"));
-        articleDtoMap.put("최신", new ArticleDto(2, "제목2", "내용2"));
+        articleDtoMap.put("가장오래된", new ArticleDto(1, "제목1", "내용1", new ArrayList<>()));
+        articleDtoMap.put("최신", new ArticleDto(2, "제목2", "내용2", new ArrayList<>()));
 
         String jsonStr = Ut.json.toStr(articleDtoMap, "");
 

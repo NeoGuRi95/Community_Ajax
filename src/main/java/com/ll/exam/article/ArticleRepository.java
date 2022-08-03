@@ -28,7 +28,7 @@ public class ArticleRepository {
 
     public static long write(String title, String body) {
         long id = ++lastId;
-        ArticleDto newArticleDto = new ArticleDto(id, title, body);
+        ArticleDto newArticleDto = new ArticleDto(id, title, body, new ArrayList<>());
 
         datum.add(newArticleDto);
 
@@ -71,5 +71,13 @@ public class ArticleRepository {
                 .stream()
                 .filter(articleDto -> articleDto.getId() > fromId)
                 .collect(Collectors.toList());
+    }
+
+    public void writeReply(long id, String reply) {
+        ArticleDto articleDto = findById(id);
+
+        if (articleDto == null) return;
+
+        articleDto.getReplyList().add(reply);
     }
 }

@@ -1,9 +1,7 @@
 package com.ll.exam.article;
 
-import com.ll.exam.ResultData;
 import com.ll.exam.Rq;
 import com.ll.exam.article.dto.ArticleDto;
-import com.ll.exam.util.Ut;
 
 import java.util.*;
 
@@ -134,16 +132,32 @@ public class ArticleController {
 
     public void showJson(Rq rq) {
         long fromId = rq.getLongParam("fromId", -1);
+        long toId = rq.getLongParam("toId", -1);
 
-        List<ArticleDto> articleDtos = null;
+        List<ArticleDto> articleDtos = new ArrayList<>();
 
         if ( fromId == -1 ) {
             articleDtos = articleService.findAll();
         }
-        else {
+        else if (toId == -1) {
             articleDtos = articleService.findIdGreaterThan(fromId);
+        } else {
+            articleDtos.add(articleService.findById(fromId));
         }
 
         rq.successJson(articleDtos);
+    }
+
+    public void writeReply(Rq rq) {
+        long id = rq.getLongPathValueByIndex(1, 0);
+        String reply = rq.getParam("reply", "");
+
+        if (reply.equals("")) {
+            return;
+        } else {
+            articleService.writeReply(id, reply);
+        }
+
+        rq.replace("/usr/article/detail/free/%d".formatted(id), null);
     }
 }
