@@ -130,22 +130,16 @@ public class ArticleController {
         rq.replace("/usr/article/detail/free/%d".formatted(id), "%d번 게시물이 수정되었습니다.".formatted(id));
     }
 
-    public void showJson(Rq rq) {
-        long fromId = rq.getLongParam("fromId", -1);
-        long toId = rq.getLongParam("toId", -1);
+    public void getReplysJson(Rq rq) {
+        long id = rq.getLongParam("id", -1);
 
-        List<ArticleDto> articleDtos = new ArrayList<>();
-
-        if ( fromId == -1 ) {
-            articleDtos = articleService.findAll();
-        }
-        else if (toId == -1) {
-            articleDtos = articleService.findIdGreaterThan(fromId);
-        } else {
-            articleDtos.add(articleService.findById(fromId));
+        if ( id == -1 ) {
+            return;
         }
 
-        rq.successJson(articleDtos);
+        ArticleDto articleDto = articleService.findById(id);
+
+        rq.successJson(articleDto);
     }
 
     public void writeReply(Rq rq) {

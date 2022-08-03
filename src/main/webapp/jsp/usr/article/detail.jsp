@@ -4,13 +4,11 @@
 
 <script>
 function Article__loadReply(Article__Id) {
-    fetch(`/usr/article/getArticles/free?fromId=\${Article__Id}&toId=\${Article__Id}`)
+    fetch(`/usr/article/getReplys/free?id=\${Article__Id}`)
         .then(data => data.json())
         .then(responseData => {
-            const article = responseData.data[0];
-            const replyList = article.replyList;
+            const replyList = responseData.data.replyList;
             const html = replyList.join('<br>');
-            console.log(html);
 
             $('.replys').replaceWith(html);
             setTimeout(Article__loadReply, 3000, Article__Id);

@@ -51,8 +51,8 @@ public class DispatchServlet extends HttpServlet {
                     case "/usr/article/listAuto":
                         articleController.showListAuto(rq);
                         break;
-                    case "/usr/article/getArticles":
-                        articleController.showJson(rq);
+                    case "/usr/article/getReplys":
+                        articleController.getReplysJson(rq);
                         break;
                     case "/usr/article/write":
                         articleController.showWrite(rq);
